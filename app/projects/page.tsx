@@ -132,12 +132,12 @@ export default function ProjectsPage({ searchParams }: ProjectsPageProps) {
                     {/* Category Filter */}
                     <div className="relative group">
                         <select
-                            value={selectedCategory || ""}
-                            onChange={(e) => setSelectedCategory(e.target.value || null)}
+                            value={selectedCategoryFromUrl === "All" ? "" : selectedCategoryFromUrl}
+                            onChange={(e) => handleCategoryChange(e.target.value || "All")}
                             className="appearance-none bg-black/60 border border-white/10 text-white px-4 py-2 pr-10 rounded-lg focus:outline-none focus:border-brand-green transition-colors cursor-pointer min-w-[150px]"
                         >
                             <option value="">All Categories</option>
-                            {allCategories.map((cat) => (
+                            {allCategories.filter(c => c !== "All").map((cat) => (
                                 <option key={cat} value={cat}>{cat}</option>
                             ))}
                         </select>
@@ -164,9 +164,9 @@ export default function ProjectsPage({ searchParams }: ProjectsPageProps) {
                     </div>
 
                     {/* Clear Filters */}
-                    {(selectedMonth || selectedCategory) && (
+                    {(selectedMonth || selectedCategoryFromUrl !== "All") && (
                         <button
-                            onClick={() => { setSelectedMonth(null); setSelectedCategory(null); }}
+                            onClick={() => { setSelectedMonth(null); handleCategoryChange("All"); }}
                             className="text-sm text-red-400 hover:text-red-300 underline"
                         >
                             Clear Filters
