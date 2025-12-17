@@ -54,7 +54,7 @@ export function Navbar() {
                         {navItems.map((item) => (
                             <Link
                                 key={item.name}
-                                href={item.href}
+                                href={item.link}
                                 className="relative text-sm font-medium text-gray-300 hover:text-white transition-colors group"
                             >
                                 {item.name}
@@ -91,7 +91,7 @@ export function Navbar() {
                         {navItems.map((item) => (
                             <Link
                                 key={item.name}
-                                href={item.href}
+                                href={item.link}
                                 className="text-2xl font-bold text-white hover:text-brand-green transition-colors"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
