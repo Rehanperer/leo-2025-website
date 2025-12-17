@@ -4,11 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db, storage } from "@/lib/firebase";
 
 export default function AddNewsletterPage() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const [imageFile, setImageFile] = useState<File | null>(null);
     const [formData, setFormData] = useState({
         title: "Origins Issue 1",
         month: "December",
@@ -26,17 +28,32 @@ export default function AddNewsletterPage() {
         return title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
     };
 
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            setImageFile(e.target.files[0]);
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
 
         try {
+            let imageUrl = "";
+
+            if (imageFile) {
+                const storageRef = ref(storage, `newsletters/${Date.now()}_${imageFile.name}`);
+                const snapshot = await uploadBytes(storageRef, imageFile);
+                imageUrl = await getDownloadURL(snapshot.ref);
+            }
+
             await addDoc(collection(db, "newsletters"), {
                 ...formData,
                 slug: generateSlug(formData.title),
                 coverParams: {
                     text: formData.coverText,
-                    color: formData.coverColor
+                    color: formData.coverColor,
+                    image: imageUrl
                 },
                 createdAt: new Date()
             });
@@ -92,7 +109,7 @@ export default function AddNewsletterPage() {
                                 <input type="text" name="coverText" value={formData.coverText} onChange={handleChange} className="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-brand-cyan outline-none" />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-400 mb-2">Color Theme</label>
+                                <label className="block text-sm font-medium text-gray-400 mb-2">Color Theme (Fallback)</label>
                                 <select name="coverColor" value={formData.coverColor} onChange={handleChange} className="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-brand-cyan outline-none">
                                     <option value="from-blue-900 to-blue-600">Blue Ocean (Origins)</option>
                                     <option value="from-purple-900 to-pink-600">Purple Haze</option>
@@ -102,8 +119,17 @@ export default function AddNewsletterPage() {
                                 </select>
                             </div>
                         </div>
-                        <div className={`mt-4 h-32 rounded-xl bg-gradient-to-br ${formData.coverColor} flex items-center justify-center`}>
-                            <span className="text-2xl font-bold font-serif italic text-white/50">{formData.coverText}</span>
+
+                        {/* Cover Image Upload */}
+                        <div className="mt-6">
+                            <label className="block text-sm font-medium text-gray-400 mb-2">Custom Cover Image (Optional)</label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                                className="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-brand-cyan outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-cyan file:text-black hover:file:bg-cyan-400"
+                            />
+                            <p className="text-xs text-gray-500 mt-1">Uploads to Firebase Storage - Overrides Color Theme</p>
                         </div>
                     </div>
 

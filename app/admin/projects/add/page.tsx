@@ -18,7 +18,8 @@ export default function AddProjectPage() {
         date: "",
         beneficiaries: "",
         volunteers: "",
-        hours: ""
+        hours: "",
+        instagramEmbed: ""
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -58,6 +59,7 @@ export default function AddProjectPage() {
                     hours: formData.hours
                 },
                 gallery: [], // Placeholder for gallery
+                instagramEmbed: formData.instagramEmbed,
                 createdAt: new Date()
             });
 
@@ -128,6 +130,19 @@ export default function AddProjectPage() {
                             required
                             rows={4}
                             value={formData.description}
+                            onChange={handleChange}
+                            className="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-brand-cyan outline-none"
+                        />
+                    </div>
+
+                    {/* Instagram Embed */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-400 mb-2">Instagram Embed URL (Optional)</label>
+                        <input
+                            type="text"
+                            name="instagramEmbed"
+                            placeholder="e.g. https://www.instagram.com/p/..."
+                            value={formData.instagramEmbed}
                             onChange={handleChange}
                             className="w-full bg-black border border-gray-800 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-brand-cyan outline-none"
                         />
