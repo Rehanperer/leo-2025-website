@@ -1,25 +1,24 @@
-"use client";
-
-import { useState } from "react";
 import DomeGallery from "@/components/DomeGallery";
-// Import static data
-import { galleryImages } from "@/lib/galleryData";
+import fs from "fs";
+import path from "path";
 
 export default function GalleryPage() {
-    // Use static data directly
-    const [images] = useState<string[]>(galleryImages);
-    const [loading] = useState(false);
+    const galleryDir = path.join(process.cwd(), "public/gallery");
+    let images: string[] = [];
 
-    /*
-    useEffect(() => {
-        const fetchImages = async () => {
-           // ...
-        };
-        fetchImages();
-    }, []);
-    */
-
-    if (loading) return <div className="h-screen bg-black flex items-center justify-center text-white">Loading Gallery...</div>;
+    try {
+        if (fs.existsSync(galleryDir)) {
+            const files = fs.readdirSync(galleryDir);
+            images = files
+                .filter((file) => /\.(jpg|jpeg|png|webp|gif)$/i.test(file))
+                // Map to the public URL
+                .map((file) => `/gallery/${file}`);
+        } else {
+            console.warn("Gallery directory not found:", galleryDir);
+        }
+    } catch (error) {
+        console.error("Error reading gallery directory:", error);
+    }
 
     return (
         <div className="w-full h-screen bg-black">
@@ -27,7 +26,7 @@ export default function GalleryPage() {
                 <DomeGallery images={images} />
             ) : (
                 <div className="h-full flex items-center justify-center text-gray-500">
-                    No images in gallery yet.
+                    No images found in gallery.
                 </div>
             )}
         </div>

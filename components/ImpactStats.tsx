@@ -41,13 +41,12 @@ export default function ImpactStats({ stats }: ImpactStatsProps) {
     return (
         <section className="relative py-24 bg-black overflow-hidden">
             {/* Background Image with Overlay */}
-            <div className="absolute inset-0 z-0">
-                <img
-                    src="/impact-bg.jpg" // Ensure this image exists in public folder
-                    alt="Impact Background"
-                    className="w-full h-full object-cover"
-                />
-                {/* Dark Overlay - Adjusted opacity to make image visible but text readable */}
+            {/* Background Image with Overlay - Fixed for Parallax Effect */}
+            <div
+                className="absolute inset-0 z-0 bg-cover bg-center bg-fixed"
+                style={{ backgroundImage: "url('/impact-bg.jpg')" }}
+            >
+                {/* Dark Overlay */}
                 <div className="absolute inset-0 bg-black/85" />
             </div>
 

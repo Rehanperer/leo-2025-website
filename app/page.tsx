@@ -5,14 +5,11 @@ import { ExcoTeam } from "@/components/ExcoTeam";
 import { Projects } from "@/components/Projects";
 import { Footer } from "@/components/Footer";
 import ImpactStats from "@/components/ImpactStats"; // Changed from named import to default if I exported default
-import { getDocs, collection } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { projects } from "@/lib/projectsData";
 
 async function getStats() {
   try {
-    const snapshot = await getDocs(collection(db, "projects"));
-    const projects = snapshot.docs.map(doc => doc.data());
-
+    // Use static data
     let beneficiaries = 0;
     let hours = 0;
 
@@ -37,7 +34,7 @@ async function getStats() {
       members: 34
     };
   } catch (e) {
-    console.error("Home Stats Fetch Error", e);
+    console.error("Home Stats Calc Error", e);
     return { beneficiaries: 0, hours: 0, projects: 0, members: 34 };
   }
 }
