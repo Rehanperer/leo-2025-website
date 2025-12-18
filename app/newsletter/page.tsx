@@ -4,48 +4,24 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { NavBarWrapper } from "@/components/NavBarWrapper";
 import { Footer } from "@/components/Footer";
-import { useEffect, useState } from "react";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
-import { db } from "@/lib/firebase";
-
-interface Newsletter {
-    id: string;
-    slug: string;
-    title: string;
-    month: string;
-    year: string;
-    coverParams: {
-        text: string;
-        color: string;
-        image?: string;
-    };
-}
+import { useState } from "react";
+// Import static data
+import { newsletterIssues, NewsletterIssue } from "@/lib/newsletterData";
 
 export default function NewsletterListingPage() {
-    const [issues, setIssues] = useState<Newsletter[]>([]);
-    const [loading, setLoading] = useState(true);
+    // Use static data directly
+    const [issues] = useState<NewsletterIssue[]>(newsletterIssues);
+    const [loading] = useState(false); // No loading state needed
 
+    /*
+    // Firebase fetching disabled
     useEffect(() => {
         const fetchNewsletters = async () => {
-            try {
-                // Fetch newsletters ordered by creation time if possible, or handle sorting client-side
-                const q = query(collection(db, "newsletters"), orderBy("createdAt", "desc"));
-                const querySnapshot = await getDocs(q);
-                const data = querySnapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                })) as Newsletter[];
-                setIssues(data);
-            } catch (error) {
-                console.error("Error fetching newsletters:", error);
-                // Fallback to empty or static if needed, but for now we want dynamic
-            } finally {
-                setLoading(false);
-            }
+            // ...
         };
-
         fetchNewsletters();
     }, []);
+    */
 
     return (
         <main className="min-h-screen bg-black text-white selection:bg-brand-green selection:text-black font-sans">

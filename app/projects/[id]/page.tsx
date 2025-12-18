@@ -1,34 +1,21 @@
-import { doc, getDoc, getDocs, collection } from "firebase/firestore";
-import { db } from "@/lib/firebase";
 import Link from "next/link";
 import { ArrowLeft, Calendar, User, Clock, Heart } from "lucide-react";
 import { notFound } from "next/navigation";
+import { projects } from "@/lib/projectsData";
 
-// Generate Static Params for SSG
+// Generate Static Params from static data
 export async function generateStaticParams() {
-    try {
-        const snapshot = await getDocs(collection(db, "projects"));
-        return snapshot.docs.map((doc) => ({ id: doc.id }));
-    } catch (e) {
-        return [];
-    }
+    return projects.map((project) => ({ id: project.id }));
 }
 
 async function getProject(id: string) {
-    try {
-        const docRef = doc(db, "projects", id);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            return { id: docSnap.id, ...docSnap.data() } as any;
-        }
-    } catch (e) {
-        console.error(e);
-    }
-    return null;
+    const project = projects.find((p) => p.id === id);
+    return project || null;
 }
 
-export default async function ProjectDetailsPage({ params }: { params: { id: string } }) {
-    const project = await getProject(params.id);
+export default async function ProjectDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const project = await getProject(id);
 
     if (!project) {
         notFound();
