@@ -22,16 +22,34 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
         notFound();
     }
 
+    // Define gradients for categories
+    const categoryGradients: Record<string, string> = {
+        "Environment": "from-green-900 to-teal-800",
+        "Health": "from-rose-900 to-pink-800",
+        "Youth Development": "from-indigo-900 to-blue-800",
+        "Community Service": "from-cyan-900 to-blue-800",
+        "Default": "from-slate-900 to-gray-800"
+    };
+
+    const gradientClass = categoryGradients[project.category] || categoryGradients["Default"];
+    const isPlaceholderInfo = ["/logo.png", "/globe.svg"].includes(project.image);
+
     return (
         <main className="min-h-screen bg-black text-white pt-24 pb-12">
             {/* Hero Image */}
             <div className="relative h-[60vh] w-full overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10" />
-                <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                />
+
+                {isPlaceholderInfo ? (
+                    <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass} opacity-80`} />
+                ) : (
+                    <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                    />
+                )}
+
                 <div className="absolute bottom-0 left-0 right-0 z-20 container mx-auto px-4 pb-12">
                     <Link href="/projects" className="inline-flex items-center text-gray-300 hover:text-brand-cyan mb-6 transition-colors">
                         <ArrowLeft className="mr-2 h-4 w-4" />
