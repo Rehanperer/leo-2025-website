@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { FolderOpen, Calendar, ArrowRight, Filter } from "lucide-react";
 import Link from "next/link";
@@ -42,7 +42,7 @@ async function getProjects() {
     }
 }
 
-export default function ProjectsPage() {
+function ProjectsContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [allProjects, setAllProjects] = useState<Project[]>([]);
@@ -232,5 +232,13 @@ export default function ProjectsPage() {
                 </AnimatePresence>
             </div>
         </div>
+    );
+}
+
+export default function ProjectsPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-black text-white pt-32 text-center">Loading Projects...</div>}>
+            <ProjectsContent />
+        </Suspense>
     );
 }
