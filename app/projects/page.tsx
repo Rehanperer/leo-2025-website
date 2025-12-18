@@ -6,6 +6,7 @@ import { FolderOpen, Calendar, ArrowRight, Filter } from "lucide-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation"; // Use next/navigation for app router
 import { cn } from "@/lib/utils";
+import { InstagramEmbedWrapper } from "@/components/InstagramEmbedWrapper";
 
 // Define a Project type for better type safety
 interface Project {
@@ -19,6 +20,7 @@ interface Project {
     stats: {
         beneficiaries: number;
     };
+    instagramUrl?: string; // Optional Instagram URL
     // Add other fields as they exist in your Firestore documents
 }
 
@@ -108,6 +110,15 @@ function ProjectsContent() {
         }
     };
 
+    // Define gradients for categories
+    const categoryGradients: Record<string, string> = {
+        "Environment": "from-green-900 to-teal-800",
+        "Health": "from-rose-900 to-pink-800",
+        "Youth Development": "from-indigo-900 to-blue-800",
+        "Community Service": "from-cyan-900 to-blue-800",
+        "Default": "from-slate-900 to-gray-800"
+    };
+
     return (
         <div className="min-h-screen bg-black text-white pt-32 pb-20 px-4 md:px-8">
             {/* Header */}
@@ -182,51 +193,68 @@ function ProjectsContent() {
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <AnimatePresence mode="popLayout">
                     {filteredProjects.length > 0 ? (
-                        filteredProjects.map((project, index) => (
-                            <motion.div
-                                key={project.id}
-                                layout
-                                custom={index}
-                                variants={cardVariants}
-                                initial="offscreen"
-                                whileInView="onscreen"
-                                viewport={{ once: false, amount: 0.3 }}
-                                whileHover={{ y: -5 }}
-                            >
-                                <Link href={`/projects/${project.id}`} className="block h-full">
-                                    <div className="h-full bg-brand-dark rounded-2xl border border-white/5 overflow-hidden hover:border-brand-cyan/50 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)] transition-all group">
-                                        {/* Image Placeholder */}
-                                        <div className="h-48 bg-gray-900 relative flex items-center justify-center overflow-hidden">
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10" />
-                                            <img src={project.image} alt={project.title} className="w-20 h-20 opacity-50 group-hover:scale-110 transition-transform duration-500" />
-                                            <div className="absolute top-4 right-4 z-20 bg-brand-green/20 text-brand-green px-3 py-1 rounded-full text-xs font-bold border border-brand-green/20 backdrop-blur-md">
-                                                {project.category}
-                                            </div>
-                                        </div>
+                        filteredProjects.map((project, index) => {
+                            const gradientClass = categoryGradients[project.category] || categoryGradients["Default"];
 
-                                        <div className="p-6">
-                                            <div className="flex items-center gap-2 text-gray-500 text-sm mb-3">
-                                                <Calendar className="w-4 h-4" />
-                                                <span>{project.date}</span>
+                            return (
+                                <motion.div
+                                    key={project.id}
+                                    layout
+                                    custom={index}
+                                    variants={cardVariants}
+                                    initial="offscreen"
+                                    whileInView="onscreen"
+                                    viewport={{ once: false, amount: 0.3 }}
+                                    whileHover={{ y: -5 }}
+                                    className="h-full bg-brand-dark rounded-2xl border border-white/5 overflow-hidden hover:border-brand-cyan/50 hover:shadow-[0_0_30px_rgba(6,182,212,0.1)] transition-all group flex flex-col"
+                                >
+                                    {/* Media Area */}
+                                    <div className="relative w-full">
+                                        {project.instagramUrl ? (
+                                            <div className="w-full flex justify-center bg-black py-4 border-b border-white/5">
+                                                {/* Instagram Embed - Clickable area controlled by embed itself usually, but we wrap it to be safe or leave it interactive */}
+                                                <InstagramEmbedWrapper url={project.instagramUrl} width={328} className="max-w-full overflow-hidden" />
                                             </div>
-                                            <h3 className="text-xl font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors line-clamp-1">{project.title}</h3>
-                                            <p className="text-gray-400 text-sm line-clamp-3 mb-6">
-                                                {project.description}
-                                            </p>
+                                        ) : (
+                                            <Link href={`/projects/${project.id}`} className="block w-full h-56 relative overflow-hidden">
+                                                <div className={`absolute inset-0 bg-gradient-to-br ${gradientClass} opacity-80 group-hover:opacity-100 transition-opacity duration-300`} />
 
-                                            <div className="flex items-center justify-between mt-auto">
-                                                <div className="text-sm font-medium text-gray-300">
-                                                    <span className="text-brand-purple">{project.stats.beneficiaries}</span> Beneficiaries
+                                                {/* Category Badge */}
+                                                <div className="absolute top-4 right-4 z-20 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-white border border-white/20">
+                                                    {project.category}
                                                 </div>
-                                                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-cyan group-hover:text-black transition-colors">
-                                                    <ArrowRight className="w-4 h-4" />
+
+                                                {/* Center Icon/Text if needed, or just clean gradient as requested */}
+                                                <div className="absolute inset-0 flex items-center justify-center">
+                                                    <FolderOpen className="w-12 h-12 text-white/20 group-hover:text-white/40 transition-colors" />
                                                 </div>
-                                            </div>
-                                        </div>
+                                            </Link>
+                                        )}
                                     </div>
-                                </Link>
-                            </motion.div>
-                        ))
+
+                                    {/* Content Area */}
+                                    <Link href={`/projects/${project.id}`} className="flex-grow flex flex-col p-6">
+                                        <div className="flex items-center gap-2 text-gray-500 text-sm mb-3">
+                                            <Calendar className="w-4 h-4" />
+                                            <span>{project.date}</span>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors line-clamp-1">{project.title}</h3>
+                                        <p className="text-gray-400 text-sm line-clamp-3 mb-6 flex-grow">
+                                            {project.description}
+                                        </p>
+
+                                        <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
+                                            <div className="text-sm font-medium text-gray-300">
+                                                <span className="text-brand-purple">{project.stats.beneficiaries}</span> Beneficiaries
+                                            </div>
+                                            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-brand-cyan group-hover:text-black transition-colors">
+                                                <ArrowRight className="w-4 h-4" />
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </motion.div>
+                            );
+                        })
                     ) : (
                         <motion.div
                             initial={{ opacity: 0 }}
