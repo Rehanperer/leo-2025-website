@@ -42,14 +42,18 @@ async function getProjects() {
     }
 }
 
+// Import static data
+import { projects } from "@/lib/projectsData";
+
 function ProjectsContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const [allProjects, setAllProjects] = useState<Project[]>([]);
-    const [loading, setLoading] = useState(true);
+    // Use static data directly
+    const [allProjects] = useState<Project[]>(projects as unknown as Project[]);
+    const [loading, setLoading] = useState(false); // No loading needed for static data
     const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
 
-    // Categories and Months can be derived from fetched data or defined statically
+    // Categories and Months
     const allCategories = ["All", "Community Service", "Environmental", "Health", "Youth Development"];
     const allMonths = [
         "January", "February", "March", "April", "May", "June",
@@ -59,6 +63,8 @@ function ProjectsContent() {
     // Get selected category from URL search params
     const selectedCategoryFromUrl = searchParams.get("category") || "All";
 
+    /* 
+    // Firebase fetching disabled as requested
     useEffect(() => {
         const fetchProjects = async () => {
             setLoading(true);
@@ -68,6 +74,7 @@ function ProjectsContent() {
         };
         fetchProjects();
     }, []);
+    */
 
     const handleCategoryChange = (category: string) => {
         const newSearchParams = new URLSearchParams(searchParams.toString());
