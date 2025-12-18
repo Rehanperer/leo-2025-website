@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, User, Clock, Heart } from "lucide-react";
 import { notFound } from "next/navigation";
 import { projects } from "@/lib/projectsData";
+import { InstagramEmbedWrapper } from "@/components/InstagramEmbedWrapper";
 
 // Generate Static Params from static data
 export async function generateStaticParams() {
@@ -55,6 +56,13 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
                                 {project.description}
                             </p>
                         </div>
+
+                        {/* Instagram Embed */}
+                        {project.instagramUrl && (
+                            <div className="flex justify-center my-8">
+                                <InstagramEmbedWrapper url={project.instagramUrl} />
+                            </div>
+                        )}
 
                         {/* Gallery Placeholder - to be fully implemented with Admin Gallery later */}
                         {project.gallery && project.gallery.length > 0 && (
