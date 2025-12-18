@@ -38,12 +38,12 @@ export default function AddProjectPage() {
 
         console.log("--- Starting Project Submission ---");
         // Debug: Check if env vars are present (without logging full secrets)
-        console.log("Environment Check:", {
+        console.log("Environment Check:", JSON.stringify({
             apiKeyPresent: !!process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
             authDomainPresent: !!process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
             projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
             storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
-        });
+        }, null, 2));
 
         try {
             let imageUrl = "";

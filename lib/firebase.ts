@@ -12,6 +12,11 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
+// Debug: Validate Config
+if (typeof window !== "undefined" && !firebaseConfig.projectId) {
+  console.error("FIREBASE INIT ERROR: Missing projectId. Check Vercel Environment Variables.", firebaseConfig);
+}
+
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
