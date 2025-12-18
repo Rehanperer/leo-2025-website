@@ -13,6 +13,7 @@ export interface Project {
         hours: string;
         value: string;
     };
+    gallery?: string[];
 }
 
 export const projects: Project[] = [

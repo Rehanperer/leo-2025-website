@@ -6,6 +6,7 @@ export interface NewsletterIssue {
     coverParams: {
         text: string;
         color: string;
+        image?: string;
     };
     embedUrl: string;
 }
