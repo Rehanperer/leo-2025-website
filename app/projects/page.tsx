@@ -4,13 +4,8 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { FolderOpen, Calendar, ArrowRight, Filter } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation"; // Use next/navigation for app router
+import { useRouter, useSearchParams } from "next/navigation"; // Use next/navigation for app router
 import { cn } from "@/lib/utils";
-
-// Re-introducing types for component props
-interface ProjectsPageProps {
-    searchParams: { category?: string };
-}
 
 // Define a Project type for better type safety
 interface Project {
@@ -47,8 +42,9 @@ async function getProjects() {
     }
 }
 
-export default function ProjectsPage({ searchParams }: ProjectsPageProps) {
+export default function ProjectsPage() {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const [allProjects, setAllProjects] = useState<Project[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
@@ -61,7 +57,7 @@ export default function ProjectsPage({ searchParams }: ProjectsPageProps) {
     ];
 
     // Get selected category from URL search params
-    const selectedCategoryFromUrl = searchParams?.category || "All";
+    const selectedCategoryFromUrl = searchParams.get("category") || "All";
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -74,7 +70,7 @@ export default function ProjectsPage({ searchParams }: ProjectsPageProps) {
     }, []);
 
     const handleCategoryChange = (category: string) => {
-        const newSearchParams = new URLSearchParams(window.location.search);
+        const newSearchParams = new URLSearchParams(searchParams.toString());
         if (category === "All") {
             newSearchParams.delete("category");
         } else {

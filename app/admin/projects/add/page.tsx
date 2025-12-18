@@ -36,17 +36,32 @@ export default function AddProjectPage() {
         e.preventDefault();
         setLoading(true);
 
+        console.log("--- Starting Project Submission ---");
+        // Debug: Check if env vars are present (without logging full secrets)
+        console.log("Environment Check:", {
+            apiKeyPresent: !!process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+            authDomainPresent: !!process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+            projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+            storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+        });
+
         try {
             let imageUrl = "";
 
             // 1. Upload Image
             if (imageFile) {
+                console.log("Attempting Image Upload...", imageFile.name);
                 const storageRef = ref(storage, `projects/${Date.now()}_${imageFile.name}`);
                 const snapshot = await uploadBytes(storageRef, imageFile);
+                console.log("Image Uploaded Snapshot:", snapshot);
                 imageUrl = await getDownloadURL(snapshot.ref);
+                console.log("Image URL retrieved:", imageUrl);
+            } else {
+                console.log("No image file selected, skipping upload.");
             }
 
             // 2. Add Document to Firestore
+            console.log("Attempting Firestore AddDoc...");
             await addDoc(collection(db, "projects"), {
                 title: formData.title,
                 category: formData.category,
@@ -62,13 +77,15 @@ export default function AddProjectPage() {
                 instagramEmbed: formData.instagramEmbed,
                 createdAt: new Date()
             });
+            console.log("Firestore AddDoc Success!");
 
             alert("Project added successfully!");
             router.push("/admin/projects");
         } catch (error) {
-            console.error("Error adding project:", error);
-            alert("Failed to add project.");
+            console.error("FULL SUBMISSION ERROR:", error);
+            alert("Failed to add project. Check console for details.");
         } finally {
+            console.log("--- Submission Flow Finished ---");
             setLoading(false);
         }
     };

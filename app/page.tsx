@@ -48,7 +48,7 @@ export default async function Home() {
   const stats = await getStats();
 
   return (
-    <main className="min-h-screen bg-black text-white selection:bg-brand-green selection:text-black">
+    <main className="min-h-screen text-white selection:bg-brand-green selection:text-black">
       <Hero />
       <About />
       <WhatWeDo />
