@@ -62,21 +62,31 @@ export default function AddProjectPage() {
 
             // 2. Add Document to Firestore
             console.log("Attempting Firestore AddDoc...");
-            await addDoc(collection(db, "projects"), {
-                title: formData.title,
-                category: formData.category,
-                description: formData.description,
-                date: formData.date,
-                image: imageUrl, // Store the URL
-                stats: {
-                    beneficiaries: formData.beneficiaries,
-                    volunteers: formData.volunteers,
-                    hours: formData.hours
-                },
-                gallery: [], // Placeholder for gallery
-                instagramEmbed: formData.instagramEmbed,
-                createdAt: new Date()
+
+            // Create a timeout promise
+            const timeout = new Promise((_, reject) => {
+                setTimeout(() => reject(new Error("Firestore operation timed out. Check your network connection or firewall.")), 10000);
             });
+
+            // Race the addDoc against the timeout
+            await Promise.race([
+                addDoc(collection(db, "projects"), {
+                    title: formData.title,
+                    category: formData.category,
+                    description: formData.description,
+                    date: formData.date,
+                    image: imageUrl, // Store the URL
+                    stats: {
+                        beneficiaries: formData.beneficiaries,
+                        volunteers: formData.volunteers,
+                        hours: formData.hours
+                    },
+                    gallery: [], // Placeholder for gallery
+                    instagramEmbed: formData.instagramEmbed,
+                    createdAt: new Date()
+                }),
+                timeout
+            ]);
             console.log("Firestore AddDoc Success!");
 
             alert("Project added successfully!");
