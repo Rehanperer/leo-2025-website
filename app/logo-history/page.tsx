@@ -65,7 +65,7 @@ export default function LogoHistoryPage() {
                 <div className="flex flex-col lg:flex-row items-start justify-center gap-12 lg:gap-20 min-h-[600px]">
 
                     {/* Interactive Logo Section */}
-                    <div className="relative w-full max-w-[500px] aspect-square mx-auto lg:mx-0 flex-shrink-0 group">
+                    <div className="relative w-full max-w-[700px] aspect-square mx-auto lg:mx-0 flex-shrink-0 group">
                         {/* Base Logo */}
                         <div className="relative w-full h-full p-8 transition-transform duration-500 will-change-transform">
                             {/* Glow Effect */}
@@ -79,36 +79,36 @@ export default function LogoHistoryPage() {
 
                             {/* Interaction Zones */}
                             <div className="absolute inset-0 z-20">
-                                {/* Torches (Left & Right) */}
+                                {/* Torches (Left & Right) - High Priority */}
                                 <div
-                                    className="absolute top-[20%] left-[5%] w-[15%] h-[60%] cursor-help"
+                                    className="absolute top-[20%] left-[5%] w-[15%] h-[60%] cursor-help z-50"
                                     onMouseEnter={() => setActiveSection("torches")}
                                     onMouseLeave={() => setActiveSection(null)}
                                 />
                                 <div
-                                    className="absolute top-[20%] right-[5%] w-[15%] h-[60%] cursor-help"
+                                    className="absolute top-[20%] right-[5%] w-[15%] h-[60%] cursor-help z-50"
                                     onMouseEnter={() => setActiveSection("torches")}
                                     onMouseLeave={() => setActiveSection(null)}
                                 />
 
-                                {/* Center/Design */}
+                                {/* Center/Design - High Priority */}
                                 <div
-                                    className="absolute top-[25%] left-[25%] w-[50%] h-[50%] rounded-full cursor-help"
+                                    className="absolute top-[25%] left-[25%] w-[50%] h-[50%] rounded-full cursor-help z-50"
                                     onMouseEnter={() => setActiveSection("design")}
                                     onMouseLeave={() => setActiveSection(null)}
                                 />
 
-                                {/* Stars (Outer Ring approx) */}
+                                {/* Stars (Outer Ring approx) - Medium Priority */}
                                 <div
-                                    className="absolute inset-0 rounded-full cursor-help hover:ring-2 ring-brand-cyan/0"
+                                    className="absolute inset-0 rounded-full cursor-help hover:ring-2 ring-brand-cyan/0 z-40"
                                     style={{ clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 20% 20%, 80% 20%, 80% 80%, 20% 80%, 20% 20%)" }}
                                     onMouseEnter={() => setActiveSection("stars")}
                                     onMouseLeave={() => setActiveSection(null)}
                                 />
 
-                                {/* Background (Corners/Edges) */}
+                                {/* Background (Corners/Edges) - Low Priority */}
                                 <div
-                                    className="absolute inset-0 -z-10 cursor-help"
+                                    className="absolute inset-0 -z-10 cursor-help z-10"
                                     onMouseEnter={() => setActiveSection("background")}
                                     onMouseLeave={() => setActiveSection(null)}
                                 />
