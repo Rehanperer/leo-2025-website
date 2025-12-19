@@ -18,6 +18,8 @@ const galleryImages = [
   "/gallery/gallery-image-10.jpg"
 ];
 
+// ... (imports remain the same)
+
 export function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -42,7 +44,7 @@ export function Hero() {
             animate={{ opacity: 0.6, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 2, ease: "easeInOut" }} // Slow cross-fade
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover will-change-transform"
             alt="Hero Background"
           />
         </AnimatePresence>
@@ -51,8 +53,8 @@ export function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] z-10" />
       </div>
 
-      {/* Background Geometric Elements (Preserved but pushed back) */}
-      <div className="absolute inset-0 pointer-events-none z-10 mix-blend-screen opacity-50">
+      {/* Background Geometric Elements (Preserved but pushed back) - Simplified for mobile */}
+      <div className="absolute inset-0 pointer-events-none z-10 mix-blend-screen opacity-50 hidden md:block">
         {/* Large Circle Top Right */}
         <motion.div
           animate={{
@@ -75,6 +77,12 @@ export function Hero() {
 
         {/* Floating Orb Center Left */}
         <div className="absolute top-1/3 -left-20 w-96 h-96 bg-brand-cyan/10 rounded-full blur-[100px]" />
+      </div>
+
+      {/* Mobile-optimized lighter background elements */}
+      <div className="absolute inset-0 pointer-events-none z-10 mix-blend-screen opacity-30 md:hidden">
+        <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-brand-green/5 blur-xl" />
+        <div className="absolute bottom-10 left-0 w-32 h-32 bg-brand-purple/10 rounded-full blur-xl" />
       </div>
 
       <div className="container mx-auto px-4 relative z-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -125,17 +133,17 @@ export function Hero() {
         </div>
 
         {/* Right: Logo & Visuals */}
-        <div className="relative flex items-center justify-center scale-110 md:scale-100">
-          {/* Rotating Rings Behind Logo */}
+        <div className="relative flex items-center justify-center scale-90 md:scale-100">
+          {/* Rotating Rings Behind Logo - Hidden on mobile for performance */}
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute w-[550px] h-[550px] border border-dashed border-gray-100/20 rounded-full"
+            className="hidden md:block absolute w-[550px] h-[550px] border border-dashed border-gray-100/20 rounded-full"
           />
           <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute w-[700px] h-[700px] border border-gray-100/10 rounded-full"
+            className="hidden md:block absolute w-[700px] h-[700px] border border-gray-100/10 rounded-full"
           />
 
           {/* Main Logo */}
@@ -143,17 +151,17 @@ export function Hero() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="relative z-10 w-80 h-80 md:w-[450px] md:h-[450px]"
+            className="relative z-10 w-64 h-64 md:w-[450px] md:h-[450px]"
           >
-            {/* Glow behind logo */}
-            <div className="absolute inset-0 bg-brand-cyan/20 blur-[80px] rounded-full" />
+            {/* Glow behind logo - Reduced blur on mobile */}
+            <div className="absolute inset-0 bg-brand-cyan/20 blur-2xl md:blur-[80px] rounded-full" />
 
             <motion.img
               src="/logo.png"
               alt="Leo Club Logo"
-              animate={{ y: [-10, 10, -10] }}
+              animate={{ y: [-5, 5, -5] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="w-full h-full object-contain drop-shadow-2xl"
+              className="w-full h-full object-contain drop-shadow-lg md:drop-shadow-2xl will-change-transform"
             />
           </motion.div>
         </div>

@@ -73,6 +73,67 @@ const Dropdown = ({ items, depth = 0 }: { items: PillNavItem[], depth?: number }
     );
 };
 
+const MobileMenuItem = ({
+    item,
+    depth = 0,
+    onClose
+}: {
+    item: PillNavItem,
+    depth?: number,
+    onClose: () => void
+}) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const hasChildren = item.items && item.items.length > 0;
+
+    return (
+        <li>
+            <div className="flex items-center justify-between pr-4">
+                <Link
+                    href={item.href}
+                    className="flex-1 block py-3 px-4 text-[16px] font-medium transition-all duration-200"
+                    style={{
+                        paddingLeft: `${16 + depth * 16}px`,
+                        color: 'var(--pill-text, #000)'
+                    }}
+                    onClick={onClose}
+                >
+                    {item.label}
+                </Link>
+                {hasChildren && (
+                    <button
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setIsExpanded(!isExpanded);
+                        }}
+                        className="p-2"
+                        aria-label="Toggle submenu"
+                    >
+                        {isExpanded ? (
+                            <ChevronDown className="w-5 h-5 text-gray-500" />
+                        ) : (
+                            <ChevronRight className="w-5 h-5 text-gray-500" />
+                        )}
+                    </button>
+                )}
+            </div>
+
+            {hasChildren && isExpanded && (
+                <ul className="list-none m-0 p-0 flex flex-col border-l border-black/5 ml-4">
+                    {item.items!.map(sub => (
+                        <MobileMenuItem
+                            key={sub.href}
+                            item={sub}
+                            depth={depth + 1}
+                            onClose={onClose}
+                        />
+                    ))}
+                </ul>
+            )}
+        </li>
+    );
+};
+
 const PillNav: React.FC<PillNavProps> = ({
     logo,
     logoAlt = 'Logo',
@@ -433,11 +494,11 @@ const PillNav: React.FC<PillNavProps> = ({
                 >
                     <span
                         className="hamburger-line w-4 h-0.5 rounded origin-center transition-all duration-[10ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]"
-                        style={{ background: 'var(--pill-bg, #fff)' }}
+                        style={{ background: 'var(--pill-text, #fff)' }}
                     />
                     <span
                         className="hamburger-line w-4 h-0.5 rounded origin-center transition-all duration-[10ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]"
-                        style={{ background: 'var(--pill-bg, #fff)' }}
+                        style={{ background: 'var(--pill-text, #fff)' }}
                     />
                 </button>
             </nav>
@@ -445,40 +506,19 @@ const PillNav: React.FC<PillNavProps> = ({
             {/* Mobile Menu */}
             <div
                 ref={mobileMenuRef}
-                className="md:hidden absolute top-[4.5em] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top"
+                className="md:hidden absolute top-[4.5em] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top overflow-hidden"
                 style={{
                     ...cssVars,
-                    background: 'var(--base, #f0f0f0)'
+                    background: 'var(--pill-bg, #fff)'
                 }}
             >
-                <ul className="list-none m-0 p-[3px] flex flex-col gap-[3px]">
+                <ul className="list-none m-0 p-2 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
                     {items.map(item => (
-                        <li key={item.href}>
-                            <Link
-                                href={item.href}
-                                className="block py-3 px-4 text-[16px] font-medium rounded-[50px] transition-all duration-200 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
-                                style={{
-                                    background: 'var(--pill-bg, #fff)',
-                                    color: 'var(--pill-text, #fff)'
-                                }}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                            >
-                                {item.label}
-                            </Link>
-
-                            {/* Simple mobile nested support */}
-                            {item.items && item.items.map(sub => (
-                                <Link
-                                    key={sub.href}
-                                    href={sub.href}
-                                    className="block py-2 px-8 text-sm font-medium opacity-80"
-                                    style={{ color: 'var(--pill-text, #fff)' }}
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    - {sub.label}
-                                </Link>
-                            ))}
-                        </li>
+                        <MobileMenuItem
+                            key={item.href}
+                            item={item}
+                            onClose={() => setIsMobileMenuOpen(false)}
+                        />
                     ))}
                 </ul>
             </div>
