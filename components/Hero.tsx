@@ -39,7 +39,7 @@ export function Hero() {
             key={currentImageIndex}
             src={galleryImages[currentImageIndex]}
             initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 0.4, scale: 1 }}
+            animate={{ opacity: 0.6, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 2, ease: "easeInOut" }} // Slow cross-fade
             className="absolute inset-0 w-full h-full object-cover"
@@ -47,8 +47,8 @@ export function Hero() {
           />
         </AnimatePresence>
         {/* Dark Gradient Overlay for Readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/80 z-10" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)] z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-black/20 z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)] z-10" />
       </div>
 
       {/* Background Geometric Elements (Preserved but pushed back) */}
