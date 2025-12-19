@@ -23,7 +23,14 @@ export default function ImpactStats({ stats }: ImpactStatsProps) {
         offset: ["start end", "end start"]
     });
 
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+    // Parallax Math:
+    // Container Height: 100% (H)
+    // Element Height: 160% (1.6H)
+    // Initial Top: -30% (-0.3H) -> Centers the 1.6H element somewhat (leaving 0.3H top overhang, 0.3H bottom overhang)
+    // Movement: +/- 15% of Element Height = +/- 0.15 * 1.6H = +/- 0.24H
+    // Start Pos: -0.3H - 0.24H = -0.54H. Bottom Edge = -0.54H + 1.6H = 1.06H (> 1H, Safe)
+    // End Pos:   -0.3H + 0.24H = -0.06H. Top Edge = -0.06H (< 0, Safe)
+    const y = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
 
     const statItems = [
         {
@@ -55,8 +62,8 @@ export default function ImpactStats({ stats }: ImpactStatsProps) {
                 className="absolute inset-0 z-0"
                 style={{
                     y,
-                    height: "120%", // Taller height to allow for movement
-                    top: "-10%"    // Center the overflow
+                    height: "160%", // Increased height for safe parallax range
+                    top: "-30%"    // Center the overflow
                 }}
             >
                 <div
