@@ -28,7 +28,7 @@ export function NavBarWrapper() {
                             items: [
                                 { label: 'Former Leaders', href: '/history/leaders' },
                                 { label: 'Club Awards', href: '/history/awards' },
-                                { label: 'Source of inspiration', href: '/history/inspiration' },
+                                { label: 'Source of inspiration', href: '/inspiration' },
                             ]
                         }
                     ]
