@@ -1,14 +1,58 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+
+const galleryImages = [
+  "/gallery/gallery-image-1.jpg",
+  "/gallery/gallery-image-2.jpg",
+  "/gallery/gallery-image-3.jpg",
+  "/gallery/gallery-image-4.jpg",
+  "/gallery/gallery-image-5.jpg",
+  "/gallery/gallery-image-6.jpg",
+  "/gallery/gallery-image-7.jpg",
+  "/gallery/gallery-image-8.jpg",
+  "/gallery/gallery-image-9.jpg",
+  "/gallery/gallery-image-10.jpg"
+];
 
 export function Hero() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+    }, 6000); // Rotate every 6 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-brand-dark pt-20">
-      {/* Background Geometric Elements */}
-      <div className="absolute inset-0 pointer-events-none">
+
+      {/* Background Slideshow */}
+      <div className="absolute inset-0 z-0 select-none pointer-events-none">
+        <AnimatePresence mode="popLayout">
+          <motion.img
+            key={currentImageIndex}
+            src={galleryImages[currentImageIndex]}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 0.4, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2, ease: "easeInOut" }} // Slow cross-fade
+            className="absolute inset-0 w-full h-full object-cover"
+            alt="Hero Background"
+          />
+        </AnimatePresence>
+        {/* Dark Gradient Overlay for Readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-black/80 z-10" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)] z-10" />
+      </div>
+
+      {/* Background Geometric Elements (Preserved but pushed back) */}
+      <div className="absolute inset-0 pointer-events-none z-10 mix-blend-screen opacity-50">
         {/* Large Circle Top Right */}
         <motion.div
           animate={{
@@ -33,7 +77,7 @@ export function Hero() {
         <div className="absolute top-1/3 -left-20 w-96 h-96 bg-brand-cyan/10 rounded-full blur-[100px]" />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 relative z-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left: Text Content */}
         <div className="text-left space-y-6">
           <motion.div
@@ -53,7 +97,7 @@ export function Hero() {
               </span>
             </h1>
 
-            <p className="text-gray-400 text-lg max-w-xl leading-relaxed">
+            <p className="text-gray-300 text-lg max-w-xl leading-relaxed drop-shadow-md">
               We are a community of young leaders dedicated to making a difference.
               Join us in creating sustainable impact through service, leadership, and innovation.
             </p>
@@ -73,7 +117,7 @@ export function Hero() {
             </a>
             <Link
               href="/projects"
-              className="px-8 py-3 rounded-lg border border-gray-700 text-gray-300 font-semibold hover:border-brand-green hover:text-brand-green transition-all"
+              className="px-8 py-3 rounded-lg border border-gray-700 text-gray-300 font-semibold hover:border-brand-green hover:text-brand-green transition-all backdrop-blur-sm bg-black/20"
             >
               View Projects
             </Link>
@@ -86,12 +130,12 @@ export function Hero() {
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute w-[550px] h-[550px] border border-dashed border-gray-800 rounded-full"
+            className="absolute w-[550px] h-[550px] border border-dashed border-gray-100/20 rounded-full"
           />
           <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute w-[700px] h-[700px] border border-gray-800/50 rounded-full"
+            className="absolute w-[700px] h-[700px] border border-gray-100/10 rounded-full"
           />
 
           {/* Main Logo */}
@@ -112,18 +156,6 @@ export function Hero() {
               className="w-full h-full object-contain drop-shadow-2xl"
             />
           </motion.div>
-
-          {/* Decorative Floating Elements around Logo */}
-          <motion.div
-            animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
-            transition={{ duration: 5, repeat: Infinity }}
-            className="absolute top-0 right-10 w-16 h-16 bg-gradient-to-br from-brand-purple to-blue-600 rounded-lg opacity-80 shadow-lg blur-[1px]"
-          />
-          <motion.div
-            animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
-            transition={{ duration: 6, repeat: Infinity, delay: 1 }}
-            className="absolute bottom-10 left-10 w-12 h-12 bg-user-gradient rounded-full bg-brand-green opacity-80 blur-[1px]"
-          />
         </div>
       </div>
     </section>
