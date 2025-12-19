@@ -1,5 +1,7 @@
 "use client";
 
+import { projects } from "@/lib/projectsData";
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Clock, Users, Heart, Banknote, ChevronLeft, ChevronRight } from "lucide-react";
@@ -9,28 +11,11 @@ import Link from "next/link";
 export function Projects() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(0);
-    const [projectsData, setProjectsData] = useState<any[]>([]); // Using any for simplicity as Project type is loose currently
+    const [projectsData] = useState<any[]>(projects);
     const [hasMounted, setHasMounted] = useState(false);
 
     useEffect(() => {
         setHasMounted(true);
-        const fetchProjects = async () => {
-            const { getDocs, collection, query, limit } = await import("firebase/firestore");
-            const { db } = await import("@/lib/firebase");
-            try {
-                // Fetch recent 6 projects
-                const q = query(collection(db, "projects"));
-                const snapshot = await getDocs(q);
-                const data = snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    ...doc.data()
-                }));
-                setProjectsData(data.slice(0, 6));
-            } catch (e) {
-                console.error("Failed to fetch projects for slider", e);
-            }
-        };
-        fetchProjects();
     }, []);
 
     // Auto-advance

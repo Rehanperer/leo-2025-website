@@ -50,6 +50,22 @@ export const projects: Project[] = [
             hours: "3",
             value: "N/A",
         },
+    },
+    {
+        id: "9",
+        title: "Sugar Rush",
+        category: "Community Service",
+        date: "2025-11-10",
+        month: "November",
+        description: "The primary goal of “Sugar Rush” was to enhance fellowship among members of the Leo Club of Ethos International while promoting teamwork, creativity, and leadership through an enjoyable and engaging activity. The initiative aimed to establish a fun atmosphere that encouraged Leos to collaborate, communicate, and strengthen their interpersonal relationships beyond their usual service and meeting contexts. Another important aim was to elevate the overall morale of the school community by arranging a lively and interactive event that united students and staff. Through the processes of planning, baking, and selling, Leos acquired essential skills in event coordination, time management, and customer interaction all contributing to their personal growth and leadership development. Moreover, the project intended to generate funds that could later support upcoming service projects which is the donation to the cancer hospital undertaken by the club. By merging enjoyment, teamwork, and a sense of purpose, “Sugar Rush” was designed to reflect the Leo values of Leadership, Experience, and Opportunity, demonstrating that service can also manifest as unity, joy, and collective effort.",
+        image: "gradient-placeholder",
+        instagramUrl: "https://www.instagram.com/p/DQ9HQ7njNOr/",
+        stats: {
+            beneficiaries: "41",
+            volunteers: "29",
+            hours: "N/A",
+            value: "8,340.00",
+        },
     }
 ];
 

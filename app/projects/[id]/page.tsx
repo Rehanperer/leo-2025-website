@@ -32,7 +32,7 @@ export default async function ProjectDetailsPage({ params }: { params: Promise<{
     };
 
     const gradientClass = categoryGradients[project.category] || categoryGradients["Default"];
-    const isPlaceholderInfo = ["/logo.png", "/globe.svg"].includes(project.image);
+    const isPlaceholderInfo = ["/logo.png", "/globe.svg", "gradient-placeholder"].includes(project.image);
 
     return (
         <main className="min-h-screen bg-black text-white pt-24 pb-12">
