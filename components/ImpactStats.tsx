@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+import { useScroll, useTransform, motion } from "framer-motion";
 import { Users, Briefcase, Clock, UserCheck } from "lucide-react";
 
 interface ImpactStatsProps {
@@ -14,6 +16,14 @@ interface ImpactStatsProps {
 export default function ImpactStats({ stats }: ImpactStatsProps) {
     // Determine stats from props, fallback to 0 if undefined (e.g. loading or not yet passed)
     const { beneficiaries = 0, projects = 0, hours = 0, members = 34 } = stats || {};
+
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start end", "end start"]
+    });
+
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
     const statItems = [
         {
@@ -39,16 +49,23 @@ export default function ImpactStats({ stats }: ImpactStatsProps) {
     ];
 
     return (
-        <section className="relative py-24 bg-black overflow-hidden">
-            {/* Background Image with Overlay */}
-            {/* Background Image with Overlay - Fixed for Parallax Effect */}
-            <div
-                className="absolute inset-0 z-0 bg-cover bg-center bg-fixed"
-                style={{ backgroundImage: "url('/impact-bg.jpg')" }}
+        <section ref={ref} className="relative py-24 bg-black overflow-hidden flex items-center">
+            {/* Background Image with Parallax via Framer Motion */}
+            <motion.div
+                className="absolute inset-0 z-0"
+                style={{
+                    y,
+                    height: "120%", // Taller height to allow for movement
+                    top: "-10%"    // Center the overflow
+                }}
             >
+                <div
+                    className="w-full h-full bg-cover bg-center"
+                    style={{ backgroundImage: "url('/impact-bg.jpg')" }}
+                />
                 {/* Dark Overlay */}
                 <div className="absolute inset-0 bg-black/85" />
-            </div>
+            </motion.div>
 
             <div className="container mx-auto px-4 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
