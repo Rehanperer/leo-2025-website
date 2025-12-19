@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Leo Club of Ethos International",
   description: "Official website of the Leo Club of Ethos International. Empowering youth through leadership and service.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
 import { NavBarWrapper } from "@/components/NavBarWrapper";
