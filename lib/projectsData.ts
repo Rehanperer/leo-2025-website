@@ -114,6 +114,22 @@ export const projects: Project[] = [
             hours: "1",
             value: "10,930.00",
         },
+    },
+    {
+        id: "13",
+        title: "Threads of Hope",
+        category: "Community Service",
+        date: "2025-10-29",
+        month: "October",
+        description: "The primary objective of \"Threads of Hope\" was to bridge the gap in educational resources faced by underprivileged schools by providing them with a projector to enhance the quality of teaching and learning. The project aimed to promote equal access to modern education through a sustainable and student-led initiative. By organizing a non-uniform day, Leos sought to create an engaging and inclusive fundraising activity that encouraged every student to participate in service. Beyond fundraising, the project also aimed to raise awareness among students about the importance of community support, empathy, and shared responsibility. It encouraged young people to recognize the impact of small collective actions in driving meaningful change towards the betterment of society. Through this initiative, the Leo Club aspired to strengthen its commitment to service, leadership, and youth empowerment while leaving a lasting impact on both the beneficiaries and the volunteers involved.",
+        image: "gradient-placeholder",
+        instagramUrl: "https://www.instagram.com/p/DQZzzO4k3Uh/",
+        stats: {
+            beneficiaries: "52",
+            volunteers: "35",
+            hours: "4",
+            value: "11,190.00",
+        },
     }
 ];
 
