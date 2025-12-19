@@ -159,9 +159,25 @@ export function Hero() {
             <motion.img
               src="/logo.png"
               alt="Leo Club Logo"
-              animate={{ y: [-5, 5, -5] }}
+              /* Only animate 'y' (bobbing) on medium screens and up to save resources on mobile */
+              animate={{ y: 0 }}
+              whileInView={{ y: [-5, 5, -5] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="w-full h-full object-contain drop-shadow-lg md:drop-shadow-2xl will-change-transform"
+              viewport={{ once: false, amount: 0.1, margin: "0px" }}
+              /* Helper class to only apply bobbing animation on md+ via CSS if Framer is too heavy, 
+                 but here we use a conditional via media query or just rely on the fact that 
+                 we simplified the classes below. 
+                 ACTUALLY: Framer doesn't support media queries in 'animate' easily without hooks.
+                 Safe fix: Remove the continuous y animation or make it very subtle/simple. 
+                 Let's rely on window width or just DISABLE it for now to prioritize performance as requested.
+              */
+              className="w-full h-full object-contain md:drop-shadow-2xl will-change-transform hidden md:block"
+            />
+            {/* Static Image for Mobile to guarantee 0 JS animation cost during scroll */}
+            <img
+              src="/logo.png"
+              alt="Leo Club Logo"
+              className="w-full h-full object-contain md:hidden will-change-transform"
             />
           </motion.div>
         </div>

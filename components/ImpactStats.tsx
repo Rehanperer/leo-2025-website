@@ -59,7 +59,7 @@ export default function ImpactStats({ stats }: ImpactStatsProps) {
         <section ref={ref} className="relative py-24 bg-black overflow-hidden flex items-center">
             {/* Background Image with Parallax via Framer Motion */}
             <motion.div
-                className="absolute inset-0 z-0"
+                className="absolute inset-0 z-0 will-change-transform"
                 style={{
                     y,
                     height: "160%", // Increased height for safe parallax range
