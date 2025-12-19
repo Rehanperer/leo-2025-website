@@ -76,7 +76,7 @@ export default function InspirationPage() {
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "out" }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
                     >
                         <h1 className="text-5xl md:text-8xl font-bold mb-6 tracking-tight">
                             Source of <br />
