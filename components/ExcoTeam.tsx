@@ -6,9 +6,9 @@ import { ArrowRight } from "lucide-react";
 
 const leaders = [
     { role: "President", name: "Leo [Name]", image: "/placeholder-user.jpg" },
-    { role: "1st Vice President", name: "Leo [Name]", image: "/placeholder-user.jpg" },
+    { role: "1st Vice President", name: "Leo Sachitha Rajapaksha", image: "/team/sachitha_rajapaksha.jpg" },
     { role: "Secretary", name: "Leo [Name]", image: "/placeholder-user.jpg" },
-    { role: "Treasurer", name: "Leo [Name]", image: "/placeholder-user.jpg" },
+    { role: "Treasurer", name: "Leo Liliana Samarasinghe", image: "/team/liliana_samarasinghe.png" },
     { role: "Leo Advisor", name: "Lion [Name]", image: "/placeholder-user.jpg" },
 ];
 
@@ -58,9 +58,13 @@ export function ExcoTeam() {
                         >
                             <div className="h-64 bg-gray-800 relative group-hover:scale-105 transition-transform duration-500">
                                 {/* Image Placeholder */}
-                                <div className="w-full h-full flex items-center justify-center text-gray-600 font-bold text-4xl">
-                                    Image
-                                </div>
+                                {leader.image && leader.image !== "/placeholder-user.jpg" ? (
+                                    <img src={leader.image} alt={leader.name} className="w-full h-full object-cover" />
+                                ) : (
+                                    <div className="w-full h-full flex items-center justify-center text-gray-600 font-bold text-4xl">
+                                        Image
+                                    </div>
+                                )}
                             </div>
                             <div className="p-6 text-center">
                                 <h3 className="text-lg font-bold text-white mb-1 group-hover:text-brand-purple transition-colors">{leader.name}</h3>

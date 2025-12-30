@@ -30,6 +30,25 @@ export default async function TeamPage() {
     // Group members by category or role if needed, or fallback to mock if empty
     // If DB is empty, empty arrays are returned. Admin 'seed' should fix this.
     const executiveOfficers = allMembers.filter(m => m.category === "Executive Officer");
+
+    // Manual injection of team members (Temporary fix until DB is populated)
+    if (!executiveOfficers.some(m => m.name.includes("Sachitha"))) {
+        executiveOfficers.push({
+            category: "Executive Officer",
+            role: "1st Vice President",
+            name: "Leo Sachitha Rajapaksha",
+            image: "/team/sachitha_rajapaksha.jpg"
+        });
+    }
+    if (!executiveOfficers.some(m => m.name.includes("Liliana"))) {
+        executiveOfficers.push({
+            category: "Executive Officer",
+            role: "Treasurer",
+            name: "Leo Liliana Samarasinghe",
+            image: "/team/liliana_samarasinghe.png"
+        });
+    }
+
     const directors = allMembers.filter(m => m.category === "Director");
 
     const cardVariants: Variants = {
