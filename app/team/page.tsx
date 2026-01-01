@@ -44,7 +44,7 @@ export default function TeamPage() {
             boxShadow: "0px 10px 30px rgba(0, 255, 157, 0.1)", // Brand green hint
             transition: {
                 duration: 0.3,
-                ease: "easeOut"
+                ease: "easeOut" as const
             }
         }
     };
