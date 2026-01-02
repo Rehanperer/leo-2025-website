@@ -10,22 +10,22 @@ export default function TeamPage() {
         // Exco
         { id: 1, name: "Leo Rishon Wickramasinghe", role: "President", image: "/team/rishon_wickramasinghe.jpg" },
         { id: 2, name: "Leo Sachitha Rajapaksha", role: "1st Vice President", image: "/team/sachitha_rajapaksha.jpg" },
-        { id: 3, name: "Leo Sera Sepion", role: "2nd Vice President", image: null },
-        { id: 4, name: "Leo Ethan Peter", role: "3rd Vice President", image: null },
+        { id: 3, name: "Leo Sera Sepion", role: "2nd Vice President", image: "/team/sera_sepion.jpg" },
+        { id: 4, name: "Leo Ethan Peter", role: "3rd Vice President", image: "/team/ethan_peter.jpg" },
         { id: 5, name: "Leo Dinuli Rodrigo", role: "Secretary", image: "/team/dinuli_rodrigo.png" },
         { id: 6, name: "Leo Sanuli Abeysena", role: "Assistant Secretary", image: "/team/sanuli_abeysena.jpg" },
         { id: 7, name: "Leo Liliana Samarasinghe", role: "Treasurer", image: "/team/liliana_samarasinghe.png" },
         { id: 8, name: "Leo Skyler Downall", role: "Assistant Treasurer", image: "/team/skyler_downall.jpg" },
         { id: 9, name: "Lion Anthony Sepion", role: "Leo Advisor", image: null },
-        { id: 10, name: "Leo Member", role: "Member", image: null },
+        { id: 10, name: "Leo Treasure Boco", role: "Member", image: "/team/treasure_boco.jpg" },
 
         // Directors
         { id: 11, name: "Leo Sanoli Rajapaksha", role: "Director of Environment", image: null },
         { id: 12, name: "Leo Santhoshi Ravichandra", role: "Director of Media", image: null },
         { id: 13, name: "Leo Oneli Fernando", role: "Director of Children and Elders", image: null },
         { id: 14, name: "Leo Limethsith Weerasinghe", role: "Director of Sports", image: "/team/limethsith_weerasinghe.jpg" },
-        { id: 15, name: "Leo Krishanthani Kumar", role: "Director of Learning and Management", image: null },
-        { id: 16, name: "Leo Stephanie Sepion", role: "Director of Health", image: null },
+        { id: 15, name: "Leo Krishanthani Kumar", role: "Director of Learning and Management", image: "/team/krishanthani_kumar.png" },
+        { id: 16, name: "Leo Stephanie Sepion", role: "Director of Health", image: "/team/stephanie_sepion.jpg" },
         { id: 17, name: "Leo Vinuga", role: "Director of Animal Welfare", image: null },
         { id: 18, name: "Leo Aabidh", role: "Director of Technology", image: "/team/leo_aabidh.jpg" },
     ];
