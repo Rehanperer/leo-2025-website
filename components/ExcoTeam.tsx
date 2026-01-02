@@ -9,7 +9,7 @@ const leaders = [
     { role: "1st Vice President", name: "Leo Sachitha Rajapaksha", image: "/team/sachitha_rajapaksha.jpg" },
     { role: "2nd Vice President", name: "Leo Sera Sepion", image: "/placeholder-user.jpg" },
     { role: "3rd Vice President", name: "Leo Ethan Peter", image: "/placeholder-user.jpg" },
-    { role: "Secretary", name: "Leo Dinuli Rodrigo", image: "/placeholder-user.jpg" },
+    { role: "Secretary", name: "Leo Dinuli Rodrigo", image: "/team/dinuli_rodrigo.png" },
     { role: "Treasurer", name: "Leo Liliana Samarasinghe", image: "/team/liliana_samarasinghe.png" },
     { role: "Leo Advisor", name: "Lion Anthony Sepion", image: "/placeholder-user.jpg" },
 ];
