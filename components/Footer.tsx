@@ -17,7 +17,7 @@ export function Footer() {
                     © {new Date().getFullYear()} Leo Club of Ethos International. All rights reserved.
                 </p>
                 <p className="text-gray-700 text-sm mt-2">
-                    Website made by <span className="text-brand-cyan">Rehan Perera</span>
+                    Website created by <a href="https://github.com/Rehanperer" target="_blank" rel="noopener noreferrer" className="hover:text-brand-cyan hover:underline transition-colors">Rehan Perera</a> and Leo Aabidh
                 </p>
             </div>
         </footer >

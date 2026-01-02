@@ -5,11 +5,13 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 const leaders = [
-    { role: "President", name: "Leo [Name]", image: "/placeholder-user.jpg" },
+    { role: "President", name: "Leo Rishon Wickramasinghe", image: "/team/rishon_wickramasinghe.jpg" },
     { role: "1st Vice President", name: "Leo Sachitha Rajapaksha", image: "/team/sachitha_rajapaksha.jpg" },
-    { role: "Secretary", name: "Leo [Name]", image: "/placeholder-user.jpg" },
+    { role: "2nd Vice President", name: "Leo Sera Sepion", image: "/placeholder-user.jpg" },
+    { role: "3rd Vice President", name: "Leo Ethan Peter", image: "/placeholder-user.jpg" },
+    { role: "Secretary", name: "Leo Dinuli Rodrigo", image: "/placeholder-user.jpg" },
     { role: "Treasurer", name: "Leo Liliana Samarasinghe", image: "/team/liliana_samarasinghe.png" },
-    { role: "Leo Advisor", name: "Lion [Name]", image: "/placeholder-user.jpg" },
+    { role: "Leo Advisor", name: "Lion Anthony Sepion", image: "/placeholder-user.jpg" },
 ];
 
 export function ExcoTeam() {

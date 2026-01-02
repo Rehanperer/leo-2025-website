@@ -6,12 +6,29 @@ import { ChevronRight } from "lucide-react";
 
 export default function TeamPage() {
     // Generate 20 placeholder members
-    const teamMembers = Array.from({ length: 20 }, (_, i) => ({
-        id: i,
-        name: `Team Member ${i + 1}`,
-        role: "Leo Member",
-        image: null // Placeholder
-    }));
+    const teamMembers = [
+        // Exco
+        { id: 1, name: "Leo Rishon Wickramasinghe", role: "President", image: "/team/rishon_wickramasinghe.jpg" },
+        { id: 2, name: "Leo Sachitha Rajapaksha", role: "1st Vice President", image: "/team/sachitha_rajapaksha.jpg" },
+        { id: 3, name: "Leo Sera Sepion", role: "2nd Vice President", image: null },
+        { id: 4, name: "Leo Ethan Peter", role: "3rd Vice President", image: null },
+        { id: 5, name: "Leo Dinuli Rodrigo", role: "Secretary", image: null },
+        { id: 6, name: "Leo Treasurer Boco", role: "Assistant Secretary", image: null },
+        { id: 7, name: "Leo Liliana Samarasinghe", role: "Treasurer", image: "/team/liliana_samarasinghe.png" },
+        { id: 8, name: "Leo Skyler Downall", role: "Assistant Treasurer", image: null },
+        { id: 9, name: "Lion Anthony Sepion", role: "Leo Advisor", image: null },
+        { id: 10, name: "Leo Sanuli Abeysena", role: "Member", image: null },
+
+        // Directors
+        { id: 11, name: "Leo Sanoli Rajapaksha", role: "Director of Environment", image: null },
+        { id: 12, name: "Leo Santhoshi Ravichandra", role: "Director of Media", image: null },
+        { id: 13, name: "Leo Oneli Fernando", role: "Director of Children and Elders", image: null },
+        { id: 14, name: "Leo Limethsith Weerasinghe", role: "Director of Sports", image: null },
+        { id: 15, name: "Leo Krishanthani Kumar", role: "Director of Learning and Management", image: null },
+        { id: 16, name: "Leo Stephany", role: "Director of Health", image: null },
+        { id: 17, name: "Leo Vinuga", role: "Director of Animal Welfare", image: null },
+        { id: 18, name: "Leo Aabidh", role: "Director of Technology", image: null },
+    ];
 
     // Animation Variants
     const containerVariants = {
@@ -98,10 +115,18 @@ export default function TeamPage() {
                             {/* Image Placeholder Area */}
                             <div className="absolute inset-0 bg-[#222] flex items-center justify-center overflow-hidden">
                                 <div className="w-full h-full bg-gradient-to-br from-[#2a2a2a] to-[#151515] group-hover:scale-110 transition-transform duration-700" />
-                                {/* Optional: Add actual image logic here later */}
-                                <span className="absolute text-gray-600 font-bold text-6xl opacity-10 select-none group-hover:opacity-20 transition-opacity">
-                                    LEO
-                                </span>
+
+                                {member.image ? (
+                                    <img
+                                        src={member.image}
+                                        alt={member.name}
+                                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    />
+                                ) : (
+                                    <span className="absolute text-gray-600 font-bold text-6xl opacity-10 select-none group-hover:opacity-20 transition-opacity">
+                                        LEO
+                                    </span>
+                                )}
                             </div>
 
                             {/* Gradient Overlay */}
