@@ -8,44 +8,25 @@ import { useRouter, useSearchParams } from "next/navigation"; // Use next/naviga
 import { cn } from "@/lib/utils";
 import { InstagramEmbedWrapper } from "@/components/InstagramEmbedWrapper";
 
-// Define a Project type for better type safety
+// Static data import
+import { projects } from "@/lib/projectsData";
+
+// Define a Project type based on the static data or keep local interface if needed for component
 interface Project {
     id: string;
     title: string;
     description: string;
     image: string;
     category: string;
-    date: string; // e.g., "January 2023"
-    month: string; // e.g., "January"
+    date: string;
+    month: string;
     stats: {
-        beneficiaries: number;
+        beneficiaries: string | number; // Updated to match likely data type in projectsData
     };
-    instagramUrl?: string; // Optional Instagram URL
-    // Add other fields as they exist in your Firestore documents
+    instagramUrl?: string;
 }
 
-// Fetch function
-async function getProjects() {
-    const { getDocs, collection, query, orderBy } = await import("firebase/firestore");
-    const { db } = await import("@/lib/firebase");
 
-    // Attempt to fetch, handle errors gracefully (e.g. if build time no key)
-    try {
-        // Order by date if you have a sortable date field, e.g., a timestamp
-        const q = query(collection(db, "projects")); // Add orderBy('timestampField', 'desc') if date format allows
-        const snapshot = await getDocs(q);
-        return snapshot.docs.map(doc => ({
-            id: doc.id,
-            ...doc.data()
-        })) as Project[]; // Cast to Project[]
-    } catch (e) {
-        console.error("Firebase fetch error", e);
-        return [];
-    }
-}
-
-// Import static data
-import { projects } from "@/lib/projectsData";
 
 function ProjectsContent() {
     const router = useRouter();
