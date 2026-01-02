@@ -11,7 +11,7 @@ const leaders = [
     { role: "3rd Vice President", name: "Leo Ethan Peter", image: "/team/ethan_peter.jpg" },
     { role: "Secretary", name: "Leo Dinuli Rodrigo", image: "/team/dinuli_rodrigo.png" },
     { role: "Treasurer", name: "Leo Liliana Samarasinghe", image: "/team/liliana_samarasinghe.png" },
-    { role: "Leo Advisor", name: "Lion Anthony Sepion", image: "/placeholder-user.jpg" },
+    { role: "Leo Advisor", name: "Lion Anthony Sepion", image: "/team/anthony_sepion.png" },
 ];
 
 export function ExcoTeam() {
