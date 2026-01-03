@@ -22,7 +22,7 @@ export default function TeamPage() {
         // Directors
         { id: 11, name: "Leo Sanoli Rajapaksha", role: "Director of Environment", image: "/team/sanoli_rajapaksha.jpg" },
         { id: 12, name: "Leo Santhoshi Ravichandra", role: "Director of Media", image: "/team/santhoshi_ravichandra.png" },
-        { id: 13, name: "Leo Oneli Fernando", role: "Director of Children and Elders", image: null },
+        { id: 13, name: "Leo Oneli Fernando", role: "Director of Children and Elders", image: "/team/oneli_fernando.jpg" },
         { id: 14, name: "Leo Limethsith Weerasinghe", role: "Director of Sports", image: "/team/limethsith_weerasinghe.jpg" },
         { id: 15, name: "Leo Krishanthani Kumar", role: "Director of Learning and Management", image: "/team/krishanthani_kumar.png" },
         { id: 16, name: "Leo Stephanie Sepion", role: "Director of Health", image: "/team/stephanie_sepion.jpg" },
