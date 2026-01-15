@@ -5,31 +5,31 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-const galleryImages = [
-  "/gallery/gallery-image-1.jpg",
-  "/gallery/gallery-image-2.jpg",
-  "/gallery/gallery-image-3.jpg",
-  "/gallery/gallery-image-4.jpg",
-  "/gallery/gallery-image-5.jpg",
-  "/gallery/gallery-image-6.jpg",
-  "/gallery/gallery-image-7.jpg",
-  "/gallery/gallery-image-8.jpg",
-  "/gallery/gallery-image-9.jpg",
-  "/gallery/gallery-image-10.jpg"
-];
+const galleryImages = Array.from({ length: 36 }, (_, i) => `/gallery/gallery-image-${i + 1}.jpg`);
 
 // ... (imports remain the same)
 
 export function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [shuffledImages, setShuffledImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    // Shuffle images on mount to ensure random order every time refreshed
+    const shuffled = [...galleryImages].sort(() => Math.random() - 0.5);
+    setShuffledImages(shuffled);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
-    }, 6000); // Rotate every 6 seconds
+    }, 4000); // Rotate every 4 seconds
 
     return () => clearInterval(interval);
   }, []);
+
+  // Use shuffledImages if available (client-side), otherwise fallback to static list (server/initial)
+  const displayImages = shuffledImages.length > 0 ? shuffledImages : galleryImages;
+  const currentSrc = displayImages[currentImageIndex];
 
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-brand-dark pt-20">
@@ -38,8 +38,8 @@ export function Hero() {
       <div className="absolute inset-0 z-0 select-none pointer-events-none">
         <AnimatePresence mode="popLayout">
           <motion.img
-            key={currentImageIndex}
-            src={galleryImages[currentImageIndex]}
+            key={currentSrc} // Use src as key to trigger animation on change
+            src={currentSrc}
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 0.6, scale: 1 }}
             exit={{ opacity: 0 }}

@@ -121,7 +121,7 @@ export const projects: Project[] = [
         category: "Community Service",
         date: "2025-10-29",
         month: "October",
-        description: "The primary objective of \"Threads of Hope\" was to bridge the gap in educational resources faced by underprivileged schools by providing them with a projector to enhance the quality of teaching and learning. The project aimed to promote equal access to modern education through a sustainable and student-led initiative. By organizing a non-uniform day, Leos sought to create an engaging and inclusive fundraising activity that encouraged every student to participate in service. Beyond fundraising, the project also aimed to raise awareness among students about the importance of community support, empathy, and shared responsibility. It encouraged young people to recognize the impact of small collective actions in driving meaningful change towards the betterment of society. Through this initiative, the Leo Club aspired to strengthen its commitment to service, leadership, and youth empowerment while leaving a lasting impact on both the beneficiaries and the volunteers involved.",
+        description: "The primary objective of \"Threads of Hope\" was to bridge the gap in educational resources faced by underprivileged schools by providing them with a projector to enhance the quality of teaching and learning. The project aimed to promote equal access to modern education through a sustainable and student-led initiative. By organizing a non-uniform day, Leos sought to create an engaging and inclusive fundraising activity that encouraged every student to participate in service. Beyond fundraising, the project also aimed to raise awareness among students about the importance of community support, empathy, and sustainable responsibility. It encouraged young people to recognize the impact of small collective actions in driving meaningful change towards the betterment of society. Through this initiative, the Leo Club aspired to strengthen its commitment to service, leadership, and youth empowerment while leaving a lasting impact on both the beneficiaries and the volunteers involved.",
         image: "gradient-placeholder",
         instagramUrl: "https://www.instagram.com/p/DQZzzO4k3Uh/",
         stats: {
@@ -129,6 +129,38 @@ export const projects: Project[] = [
             volunteers: "35",
             hours: "4",
             value: "11,190.00",
+        },
+    },
+    {
+        id: "14",
+        title: "Bright Beginnings",
+        category: "Education",
+        date: "2025-12-31",
+        month: "December",
+        description: "The Bright Beginnings project was initiated in response to a request raised by the school principal to the Lions Club of Dehiwela Legends. This request was informed to us, in order for us to join our hands too to the project to make a better impact and enhance the bond between the Leo and Lions Club. Many students had lost essential school materials such as stationery, books and learning resources, creating barriers to continuing their education smoothly. Without immediate assistance, these students risk falling behind academically and experiencing increased stress at the beginning of the new academic year. Beyond the material losses, the flood had a significantly psychological impact on the students. Exposure to a natural disaster at a young age caused fear, anxiety, stress and emotional instability, which negatively affected the students’ ability to concentrate on learning and maintain a positive outlook. The community therefore required a holistic intervention that addressed both educational continuity and emotional recovery. Bright Beginnings was designed to meet these dual needs by combining educational assistance with mental health support.",
+        image: "gradient-placeholder",
+        instagramUrl: "https://www.instagram.com/p/DS6zH1zDIjT/",
+        stats: {
+            beneficiaries: "450",
+            volunteers: "22",
+            hours: "24",
+            value: "93,675.00",
+        },
+    },
+    {
+        id: "15",
+        title: "Donation Drive",
+        category: "Community Service",
+        date: "2025-12-10",
+        month: "December",
+        description: "In response to the Sri Lanka flood crisis, Leo members organized a donation drive to collect dry rations and essential items for flood-affected families in Kandy. The collected items included food supplies and other basic necessities required for daily living. These donations were handed over to ATD Lanka, an organization actively involved in disaster relief and community support. Leo members visited Kandy to personally deliver the donations, ensuring transparency and meaningful engagement with the relief process. Through this initiative, the project contributed to alleviating the immediate hardships faced by affected families while supporting ongoing relief efforts led by ATD Lanka.",
+        image: "gradient-placeholder",
+        instagramUrl: "https://www.instagram.com/p/DSHa89Bk-qH/",
+        stats: {
+            beneficiaries: "14",
+            volunteers: "6",
+            hours: "2",
+            value: "126,300.00",
         },
     }
 ];

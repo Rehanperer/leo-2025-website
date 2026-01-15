@@ -855,7 +855,8 @@ export default function DomeGallery({
                                             draggable={false}
                                             alt={it.alt}
                                             fill
-                                            sizes="(max-width: 768px) 100vw, 400px"
+                                            sizes="200px"
+                                            quality={60}
                                             className="object-cover pointer-events-none"
                                             style={{
                                                 backfaceVisibility: 'hidden',
