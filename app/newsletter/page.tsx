@@ -94,7 +94,7 @@ export default function NewsletterListingPage() {
                                                     Year of Excellence
                                                 </div>
                                                 <div className="absolute top-0 right-0 text-xs font-bold text-white/80 uppercase tracking-widest drop-shadow-md">
-                                                    {issue.month.toUpperCase()} '{issue.year.slice(2)}
+                                                    {issue.coverParams.customBadge || `${issue.month.toUpperCase()} '${issue.year.slice(2)}`}
                                                 </div>
 
                                                 <h2 className="text-5xl md:text-6xl font-black text-white text-center drop-shadow-xl z-10 italic tracking-tighter">
