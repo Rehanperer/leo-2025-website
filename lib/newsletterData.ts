@@ -35,5 +35,17 @@ export const newsletterIssues: NewsletterIssue[] = [
             customBadge: "FEBRUARY 7"
         },
         embedUrl: "https://online.anyflip.com/mpvfm/sqpy/index.html"
+    },
+    {
+        slug: "origins-issue-3",
+        title: "Origins Issue 3",
+        month: "March",
+        year: "2026",
+        coverParams: {
+            text: "ORIGINS",
+            color: "from-emerald-900 to-teal-600",
+            customBadge: "MARCH 8"
+        },
+        embedUrl: "https://online.anyflip.com/mpvfm/eamj/index.html"
     }
 ];
