@@ -34,6 +34,12 @@ export const projects: Project[] = [
             hours: "2",
             value: "N/A",
         },
+        gallery: [
+            "/gallery/gallery-image-38.jpg",
+            "/gallery/gallery-image-41.jpg",
+            "/gallery/gallery-image-42.jpg",
+            "/gallery/gallery-image-43.jpg"
+        ],
     },
     {
         id: "8",
@@ -171,7 +177,7 @@ export const projects: Project[] = [
         month: "January",
         description: "The objective of the car wash project was to provide a practical and convenient service to the local community in Colombo 7 while promoting fellowship and active engagement among Leo members. The project aimed to strengthen community relations, develop teamwork and leadership skills within the club, and promote the core Leo values of service, responsibility, and fellowship. The benefiting community included parents, staff, and members of the public. The initiative catered to individuals seeking a convenient service within their local community. The car wash project provided Leo members with a valuable service opportunity to actively engage with the community while working together in a spirit of fellowship.",
         image: "gradient-placeholder",
-        instagramUrl: "",
+        instagramUrl: "https://www.instagram.com/p/DTvLaXUDGvS/",
         stats: {
             beneficiaries: "8",
             volunteers: "N/A",
@@ -194,6 +200,11 @@ export const projects: Project[] = [
             hours: "N/A",
             value: "N/A",
         },
+        gallery: [
+            "/gallery/gallery-image-44.jpg",
+            "/gallery/gallery-image-45.jpg",
+            "/gallery/gallery-image-46.jpg"
+        ],
     },
     {
         id: "18",
@@ -203,7 +214,7 @@ export const projects: Project[] = [
         month: "February",
         description: "The primary objective of the Sweet Spot project was to organize and operate a small-scale dessert sale within the school environment, offering students a variety of affordable and appealing treats during interval time. This aimed to meet the need for convenient and enjoyable snack options while enhancing the overall student experience. Another key objective was to raise funds through the sale of these products in order to support a selected community cause as part of the Leo Club's service initiatives. The project intended to ensure that the proceeds contributed meaningfully towards individuals or groups in need, thereby creating a positive social impact beyond the school. In addition, the project aimed to develop essential life skills among the participating members.",
         image: "gradient-placeholder",
-        instagramUrl: "",
+        instagramUrl: "https://www.instagram.com/p/DVzk3z9DA1p/",
         stats: {
             beneficiaries: "22",
             volunteers: "N/A",
@@ -225,6 +236,134 @@ export const projects: Project[] = [
             volunteers: "N/A",
             hours: "N/A",
             value: "N/A",
+        },
+    },
+    {
+        id: "20",
+        title: "Leo Day",
+        category: "Youth",
+        date: "2025-12-05",
+        month: "December",
+        description: "The objective of the project was to strengthen fellowship and unity among Leo Club members while creating a platform for active engagement and collaboration. Through interactive games and reflective activities conducted during International Leo Day, the project aimed to encourage teamwork, leadership development, and creative thinking. Activities included dividing into groups to develop and present project ideas, reflecting on personal learning experiences through the 'Leo Wall,' and playing 'Leo Imposter' to encourage teamwork and fun interaction.",
+        image: "gradient-placeholder",
+        instagramUrl: "https://www.instagram.com/p/DT8GZWgDIMY/",
+        stats: {
+            beneficiaries: "30",
+            volunteers: "28",
+            hours: "2",
+            value: "0.00",
+        },
+    },
+    {
+        id: "21",
+        title: "Meal of Thanks",
+        category: "Community",
+        date: "2026-01-25",
+        month: "January",
+        description: "The objective of the Meal of Thanks project was to recognize and appreciate the efforts of municipal council workers who play a vital role in maintaining public services. The project aimed to provide support through the distribution of rice packets, while also fostering a sense of gratitude, morale, and encouragement among the workers. These workers play a vital role in maintaining the cleanliness and safety of the community, often working long hours outside in the heat. Providing rice packets was a meaningful way to acknowledge their hard work and show gratitude for their continuous contribution to the community.",
+        image: "gradient-placeholder",
+        instagramUrl: "https://www.instagram.com/p/DUV4HW1jGqN/",
+        stats: {
+            beneficiaries: "14",
+            volunteers: "5",
+            hours: "1",
+            value: "6,300.38",
+        },
+    },
+    {
+        id: "22",
+        title: "Beyond Bullying",
+        category: "Youth",
+        date: "2026-02-05",
+        month: "February",
+        description: "The Beyond Bullying seminar was organized by the Leo Club and the Prefects' Guild of Ethos International School with the objective of enlightening the students about the critical issue of bullying and its effects on mental health. Facilitated by Sir Jenoosh Lawrance, the program aimed to raise awareness about verbal, physical, and social bullying. The speaker explained the importance of empathy and encouraged students to speak up and report bullying cases to the relevant authority figures, helping to create a safer, more inclusive, and supportive school environment.",
+        image: "gradient-placeholder",
+        instagramUrl: "https://www.instagram.com/p/DVu-zwfCcRf/",
+        stats: {
+            beneficiaries: "38",
+            volunteers: "26",
+            hours: "1",
+            value: "0.00",
+        },
+        gallery: [
+            "/gallery/gallery-image-38.jpg",
+            "/gallery/gallery-image-41.jpg",
+            "/gallery/gallery-image-42.jpg",
+            "/gallery/gallery-image-43.jpg"
+        ],
+    },
+    {
+        id: "23",
+        title: "Vision with Heart",
+        category: "Health",
+        date: "2026-03-15",
+        month: "March",
+        description: "The 'Vision with Heart' project was a community service initiative aimed at improving eye health and overall well-being of elderly residents at the Help for Life Elderly Care Home. The project focused on identifying individuals with vision difficulties and providing them with appropriate spectacles and other necessary optical aids in collaboration with Vision Care. Students and volunteers played an active role in assessing the needs of the residents, organizing donations, and interacting with the elderly to better understand their challenges, ultimately improving their independence and quality of life.",
+        image: "gradient-placeholder",
+        instagramUrl: "https://www.instagram.com/p/DV0RNGkjDbW/",
+        stats: {
+            beneficiaries: "11",
+            volunteers: "5",
+            hours: "2",
+            value: "46,999.85",
+        },
+        gallery: [
+            "/gallery/gallery-image-44.jpg",
+            "/gallery/gallery-image-45.jpg",
+            "/gallery/gallery-image-46.jpg"
+        ],
+    },
+    {
+        id: "24",
+        title: "Leo Canteen",
+        category: "Youth",
+        date: "2026-03-20",
+        month: "March",
+        description: "The main objective of the Leo Canteen project was to provide affordable and accessible snacks and treats to students within the school community while ensuring quality and hygiene standards were maintained. The project sought to promote teamwork, responsibility, and leadership among the members involved by assigning roles such as planning, sourcing, preparation, sales, and financial management. It also aimed to generate revenue to support future Leo Club activities while creating a positive and engaging environment within the school.",
+        image: "gradient-placeholder",
+        instagramUrl: "",
+        stats: {
+            beneficiaries: "40",
+            volunteers: "5",
+            hours: "5",
+            value: "99,125.00",
+        },
+    },
+    {
+        id: "25",
+        title: "Charitable Chews",
+        category: "Environment",
+        date: "2026-04-10",
+        month: "April",
+        description: "Charitable Chews was an Animal Welfare project carried out by the Leo Club of Ethos International in collaboration with Justice for Animals Sri Lanka. At a marketplace in Narahenpita, members distributed meals consisting of rice, chicken, and fish to stray dogs and cats. The project helped build a sense of responsibility and care towards animals while raising awareness among Leo members and onlookers. It provided the street animals with necessary nutrition, helping prevent illness and offering consolation to the starving animals in the area.",
+        image: "gradient-placeholder",
+        instagramUrl: "https://www.instagram.com/p/DXrW1Dtiaqn/",
+        stats: {
+            beneficiaries: "56",
+            volunteers: "4",
+            hours: "1",
+            value: "10,000.00",
+        },
+        gallery: [
+            "/gallery/gallery-image-37.jpg",
+            "/gallery/gallery-image-39.jpg",
+            "/gallery/gallery-image-40.jpg"
+        ],
+    },
+    {
+        id: "26",
+        title: "LeoLynk",
+        category: "Youth",
+        date: "2026-04-20",
+        month: "April",
+        description: "LeoLynk aims to revolutionize the operational landscape of Leo Clubs across Sri Lanka by transitioning from fragmented, manual workflows to a centralized, AI-enhanced digital ecosystem. The project automates the generation of official documents, streamlines financial auditing, and facilitates seamless cross-club collaboration. By leveraging context-aware AI tools and interactive impact maps, LeoLynk empowers youth leaders to focus on high-impact service projects rather than administrative burdens, fostering a more efficient, transparent, and sustainable model for youth leadership.",
+        image: "/leolynk_preview.png",
+        instagramUrl: "https://www.instagram.com/p/DTSDXn5jMLm/",
+        stats: {
+            beneficiaries: "179",
+            volunteers: "179",
+            hours: "55",
+            value: "1,019.75",
         },
     }
 ];
